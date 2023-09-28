@@ -2,7 +2,7 @@
 
 import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
 import { IsClientCtxProvider } from './IsClientCtxProvider'
 import { IframeResizer } from './providers/IframeResizer'
 import PageViewTracker from './providers/PageViewTracker'
@@ -12,6 +12,9 @@ export default function Providers({
   children,
   region,
 }: PropsWithChildren<{ region: { code: string; name: string } }>) {
+  useEffect(() => {
+    console.log('first render')
+  }, [])
   return (
     <IsClientCtxProvider>
       <IframeOptionsProvider>
