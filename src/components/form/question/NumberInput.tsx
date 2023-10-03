@@ -1,3 +1,4 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { QuestionSize } from '@/types/values'
 
 type Props = {
@@ -21,6 +22,7 @@ export default function NumberInput({
   size = 'md',
   min = 0,
 }: Props) {
+  const { t } = useClientTranslation()
   return (
     <div
       className={`flex items-center justify-end gap-1 ${sizeClassNames[size]}`}>
@@ -30,7 +32,7 @@ export default function NumberInput({
         min={min}
         value={isMissing ? '' : value}
         placeholder={value.toLocaleString('fr-fr', {
-          maximumFractionDigits: 1,
+          maximumFractionDigits: 0,
         })}
         onChange={(event) => {
           setValue(Number(event.target.value))
@@ -39,7 +41,7 @@ export default function NumberInput({
       {unit ? (
         <>
           &nbsp;
-          {unit}
+          {t(unit)}
         </>
       ) : null}
     </div>

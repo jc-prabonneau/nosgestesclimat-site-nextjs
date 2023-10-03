@@ -15,7 +15,7 @@ export default function NumberInput({
   description,
   setValue,
 }: Props) {
-  const { value, isMissing } = useRule(question)
+  const { numericValue, isMissing } = useRule(question)
 
   // Model shenanigans for description split...
   return (
@@ -40,20 +40,22 @@ export default function NumberInput({
       </div>
       <div className="flex items-center">
         <Button
-          disabled={value === 0}
-          onClick={() => setValue(Number(value) - 1)}
+          disabled={numericValue === 0}
+          onClick={() => setValue(numericValue - 1)}
           className="z-10 h-10 w-10">
           -
         </Button>
         <input
           className="bg-transparent-100  w-10 text-center"
           type="number"
-          value={isMissing ? '' : Number(value)}
-          placeholder={String(value)}
+          value={isMissing ? '' : numericValue}
+          placeholder={numericValue.toLocaleString('fr-fr', {
+            maximumFractionDigits: 0,
+          })}
           onChange={(event) => setValue(Number(event.target.value))}
         />
         <Button
-          onClick={() => setValue(Number(value) + 1)}
+          onClick={() => setValue(numericValue + 1)}
           className="z-10 h-10 w-10">
           +
         </Button>
