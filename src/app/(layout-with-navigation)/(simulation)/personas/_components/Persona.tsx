@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useUser } from '@/publicodes-state'
+import { useTempEngine, useUser } from '@/publicodes-state'
 import { Persona as PersonaType } from '@/publicodes-state/types'
 
 type Props = {
@@ -16,6 +16,12 @@ export default function Persona({ persona, dottedName }: Props) {
 
   const isCurrentPersonaSelected =
     getCurrentSimulation()?.persona === dottedName
+
+  const { getRuleObject } = useTempEngine()
+
+  const missingVariables = getRuleObject('bilan').missingVariables
+
+  const defaultMissingVariables = Object.keys(missingVariables)
 
   return (
     <Card
@@ -41,7 +47,10 @@ export default function Persona({ persona, dottedName }: Props) {
             initSimulation({
               situation: persona.situation,
               persona: dottedName,
-              foldedSteps: Object.keys(persona.situation) || [],
+              foldedSteps:
+                Object.entries(persona.situation)?.length === 0
+                  ? defaultMissingVariables
+                  : Object.keys(persona.situation),
             })
           }>
           <Trans>Sélectionner</Trans>
