@@ -17,15 +17,17 @@ export default function useSimulations({
   setCurrentSimulationId,
 }: Props) {
   const initSimulation = ({
+    id: idFromProps,
     situation = {},
     persona,
     foldedSteps = [],
   }: {
+    id?: string
     situation?: Situation
     persona?: string
     foldedSteps?: string[]
   } = {}) => {
-    const id = uuidv4()
+    const id = idFromProps || uuidv4()
 
     setSimulations((prevSimulations: Simulation[]) => [
       ...prevSimulations,
@@ -52,6 +54,7 @@ export default function useSimulations({
         )
 
         if (!simulationUpdated) return prevSimulations // TODO: should throw error
+
         return [
           ...prevSimulations.filter(
             (simulation: Simulation) => simulation.id !== currentSimulationId
@@ -66,6 +69,39 @@ export default function useSimulations({
         ]
       })
     }
+  }
+
+  const updateSituationOfSimulation = ({
+    situationToAdd,
+    simulationId,
+  }: {
+    situationToAdd: Situation
+    simulationId: string
+  }) => {
+    if (!simulationId) throw new Error('simulationId is required')
+
+    setSimulations((prevSimulations: Simulation[]) => {
+      const simulationUpdated = prevSimulations.find(
+        (simulation: Simulation) => simulation.id === simulationId
+      )
+
+      if (!simulationUpdated) {
+        throw new Error('Simulation not found')
+      }
+
+      return [
+        ...prevSimulations.filter(
+          (simulation: Simulation) => simulation.id !== simulationId
+        ),
+        {
+          ...simulationUpdated,
+          situation: {
+            ...simulationUpdated?.situation,
+            ...situationToAdd,
+          },
+        },
+      ]
+    })
   }
 
   const updateFoldedStepsOfCurrentSimulation = (foldedStep: string) => {
@@ -83,6 +119,27 @@ export default function useSimulations({
           {
             ...simulationUpdated,
             foldedSteps: [...simulationUpdated.foldedSteps, foldedStep],
+          },
+        ]
+      })
+    }
+  }
+
+  const updateAllFoldedStepsOfCurrentSimulation = (foldedSteps: string[]) => {
+    if (currentSimulationId) {
+      setSimulations((prevSimulations: Simulation[]) => {
+        const simulationUpdated = prevSimulations.find(
+          (simulation: Simulation) => simulation.id === currentSimulationId
+        )
+
+        if (!simulationUpdated) return prevSimulations // TODO: should throw error
+        return [
+          ...prevSimulations.filter(
+            (simulation: Simulation) => simulation.id !== currentSimulationId
+          ),
+          {
+            ...simulationUpdated,
+            foldedSteps,
           },
         ]
       })
@@ -123,7 +180,9 @@ export default function useSimulations({
     getCurrentSimulation,
     currentSimulationId,
     updateSituationOfCurrentSimulation,
+    updateSituationOfSimulation,
     updateFoldedStepsOfCurrentSimulation,
+    updateAllFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     initSimulation,
     deleteSimulation,

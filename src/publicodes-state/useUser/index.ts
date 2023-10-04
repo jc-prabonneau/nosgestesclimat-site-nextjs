@@ -34,7 +34,9 @@ export default function useUser() {
     initSimulation,
     deleteSimulation,
     updateSituationOfCurrentSimulation,
+    updateSituationOfSimulation,
     updateFoldedStepsOfCurrentSimulation,
+    updateAllFoldedStepsOfCurrentSimulation,
     updateCurrentSimulationActionChoices,
     getCurrentSimulation,
   } = useSimulations({
@@ -107,9 +109,17 @@ export default function useUser() {
      */
     updateSituationOfCurrentSimulation,
     /**
+     * Update the situation of the simulation with the specified ID (by adding the passed situation to the existing situation)
+     */
+    updateSituationOfSimulation,
+    /**
      * Add a folded step to the list of folded step of the current simulation
      */
     updateFoldedStepsOfCurrentSimulation,
+    /**
+     * Replace the folded steps of the current simulation by the ones passed
+     */
+    updateAllFoldedStepsOfCurrentSimulation,
     /**
      * Replace the actions choices of the current simulation by the one passed
      */

@@ -3,8 +3,9 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
-import { useTempEngine, useUser } from '@/publicodes-state'
+import { useEngine, useTempEngine, useUser } from '@/publicodes-state'
 import { Persona as PersonaType } from '@/publicodes-state/types'
+import { v4 as uuid } from 'uuid'
 
 type Props = {
   persona: PersonaType
@@ -12,16 +13,39 @@ type Props = {
 }
 
 export default function Persona({ persona, dottedName }: Props) {
-  const { initSimulation, getCurrentSimulation } = useUser()
+  const {
+    initSimulation,
+    getCurrentSimulation,
+    updateSituationOfSimulation,
+    updateAllFoldedStepsOfCurrentSimulation,
+  } = useUser()
 
   const isCurrentPersonaSelected =
     getCurrentSimulation()?.persona === dottedName
+
+  const { getNumericValue } = useEngine()
 
   const { getRuleObject } = useTempEngine()
 
   const missingVariables = getRuleObject('bilan').missingVariables
 
   const defaultMissingVariables = Object.keys(missingVariables)
+
+  const hasEmptySituation = Object.entries(persona.situation)?.length === 0
+
+  // TODO: heavy artilery, there must be a better way to do this
+  function getDefaultValues() {
+    const currentSituationMissingVariables =
+      getRuleObject('bilan').missingVariables
+
+    return Object.keys(currentSituationMissingVariables).reduce(
+      (accumulator: { [key: string]: number }, dotteName: string) => {
+        accumulator[dotteName] = getNumericValue(dotteName)
+        return accumulator
+      },
+      {}
+    )
+  }
 
   return (
     <Card
@@ -43,16 +67,28 @@ export default function Persona({ persona, dottedName }: Props) {
           size="sm"
           className="align-self-end mt-auto"
           disabled={isCurrentPersonaSelected}
-          onClick={() =>
+          onClick={() => {
+            const id = uuid()
             initSimulation({
+              id,
               situation: persona.situation,
               persona: dottedName,
-              foldedSteps:
-                Object.entries(persona.situation)?.length === 0
-                  ? defaultMissingVariables
-                  : Object.keys(persona.situation),
+              foldedSteps: hasEmptySituation
+                ? defaultMissingVariables
+                : Object.keys(persona.situation),
             })
-          }>
+
+            if (hasEmptySituation) {
+              setTimeout(() => {
+                updateSituationOfSimulation({
+                  situationToAdd: getDefaultValues(),
+                  simulationId: id,
+                })
+
+                updateAllFoldedStepsOfCurrentSimulation(defaultMissingVariables)
+              }, 0)
+            }
+          }}>
           <Trans>Sélectionner</Trans>
         </Button>
       )}

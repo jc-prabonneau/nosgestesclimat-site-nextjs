@@ -10,6 +10,7 @@ export default function usePersistentSimulations({ storageKey }: Props) {
 
   const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
+  // TODO: Move to own hook
   const [groupToRedirectToAfterTest, setGroupToRedirectToAfterTest] =
     useState<Group>()
 
