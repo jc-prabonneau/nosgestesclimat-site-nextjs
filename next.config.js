@@ -71,7 +71,7 @@ const nextConfig = {
 module.exports = withMDX(nextConfig)
 
 // Injected content via Sentry wizard below
-
+/*
 const { withSentryConfig } = require('@sentry/nextjs')
 
 module.exports = withSentryConfig(
@@ -106,3 +106,4 @@ module.exports = withSentryConfig(
     disableLogger: true,
   }
 )
+*/
