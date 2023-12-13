@@ -7,7 +7,6 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import AnimatedIllustration from './_components/AnimatedIllustration'
 import GroupsLink from './_components/GroupsLink'
-import LandingExplanations from './_components/LandingExplanations'
 import NewsBanner from './_components/NewsBanner'
 import ProfileLink from './_components/ProfileLink'
 import TakeTestLink from './_components/TakeTestLink'
@@ -113,8 +112,6 @@ export default async function Landing() {
             </a>
           </div>
         </div>
-
-        <LandingExplanations />
       </Main>
 
       <Footer />
