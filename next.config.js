@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/*
+
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
@@ -7,7 +7,6 @@ const withMDX = require('@next/mdx')({
 const redirects = require('./config/redirects.js')
 
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   // Configure pageExtensions to include md and mdx
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -59,12 +58,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return redirects
+  },
   experimental: {
     mdxRs: true,
   },
 }
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig)
 
 // Injected content via Sentry wizard below
 /*
