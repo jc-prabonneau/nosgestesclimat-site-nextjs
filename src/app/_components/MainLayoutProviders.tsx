@@ -4,7 +4,6 @@ import { IframeOptionsProvider } from '@/contexts/IframeOptionsContext'
 import { useTrackSplitTesting } from '@/hooks/useTrackSplitTesting'
 import { UserProvider } from '@/publicodes-state'
 import { PropsWithChildren } from 'react'
-import CheckFixedRegion from './mainLayoutProviders/CheckFixedRegion'
 import { IframeResizer } from './mainLayoutProviders/IframeResizer'
 import PageViewTracker from './mainLayoutProviders/PageViewTracker'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
@@ -28,7 +27,7 @@ export default function MainLayoutProviders({
               initialRegion={region}
               storageKey="nosgestesclimat::v3">
               <SimulationFromUrlLoader />
-              <CheckFixedRegion />
+
               {children}
             </UserProvider>
           </PageViewTracker>
