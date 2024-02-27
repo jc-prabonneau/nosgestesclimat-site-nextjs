@@ -2,8 +2,8 @@ import Providers from '@/components/providers/Providers'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import getPersonas from '@/helpers/modelFetching/getPersonas'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import { personas } from '@incubateur-ademe/nosgestesclimat'
 import PersonaExplanations from './_components/PersonaExplanations'
 import PersonaList from './_components/PersonaList'
 
@@ -20,12 +20,11 @@ export async function generateMetadata() {
 
 type Props = {
   params: {
-    locale: string
+    locale: 'fr' | 'en'
   }
 }
 export default async function Personas({ params: { locale } }: Props) {
   const supportedRegions = await getSupportedRegions()
-  const personas = await getPersonas({ locale })
 
   return (
     <Providers supportedRegions={supportedRegions}>
@@ -46,7 +45,7 @@ export default async function Personas({ params: { locale } }: Props) {
           comme si vous étiez l'un des profils types que nous avons listés.
         </Trans>
       </p>
-      <PersonaList personas={personas} />
+      <PersonaList personas={personas[locale]} />
       <PersonaExplanations />
     </Providers>
   )

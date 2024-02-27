@@ -1,10 +1,9 @@
 'use client'
 
-import { Persona as PersonaType } from '@/publicodes-state/types'
 import Persona from './Persona'
 
 type Props = {
-  personas: Record<string, PersonaType>
+  personas: any
 }
 
 export default function PersonaList({ personas }: Props) {

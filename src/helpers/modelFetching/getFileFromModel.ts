@@ -45,7 +45,7 @@ async function importPreviewFile({
 async function importFile({ fileName }: { fileName: string }) {
   console.log('fetching file', fileName)
   return axios
-    .get(`/api/model/${fileName}`)
+    .get(`/api/rules`)
     .then((res) => res.data)
     .catch((e) => {
       console.error('importFile error', e)
