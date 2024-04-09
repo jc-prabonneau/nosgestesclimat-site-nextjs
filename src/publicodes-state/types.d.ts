@@ -75,8 +75,8 @@ export type Simulation = {
   computedResults?: ComputedResults
   progression?: number
   defaultAdditionalQuestionsAnswers?: Record<string, string>
-  poll?: string | null
-  group?: string | null
+  polls?: string[] | null
+  groups?: string[] | null
   savedViaEmail?: boolean
 }
 
