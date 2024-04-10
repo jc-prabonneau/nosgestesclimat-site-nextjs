@@ -99,12 +99,12 @@ module.exports = {
       animation: {
         valuechange: 'valuechange 3s ease-out infinite',
         iconsRotation: 'iconsRotation 1s ease-in-out',
-        planet1: 'planet1 3s forwards ease-in',
-        planet2: 'planet2 3s forwards ease-in',
-        planet3: 'planet3 3s forwards ease-in',
-        planet4: 'planet4 3s forwards ease-in',
-        planet5: 'planet5 3s forwards ease-in',
-        planet6: 'planet6 3s forwards ease-in',
+        planet1: 'planet1 9s forwards ease-in',
+        planet2: 'planet2 9s forwards ease-in',
+        planet3: 'planet3 9s forwards ease-in',
+        planet4: 'planet4 9s forwards ease-in',
+        planet5: 'planet5 9s forwards ease-in',
+        planet6: 'planet6 9s forwards ease-in',
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",
