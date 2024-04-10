@@ -1,5 +1,6 @@
 import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
+import { DottedName } from '@/publicodes-state/types'
 import { ReactNode } from 'react'
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
   percentageOfTotalValue: number
   minTitleWidth?: number
   index?: number
+  category?: DottedName
 }
 
 export default function HorizontalBarChartItem({
@@ -18,8 +20,8 @@ export default function HorizontalBarChartItem({
   percentageOfTotalValue,
   minTitleWidth,
   index,
+  category,
 }: Props) {
-  console.log(title)
   return (
     <div className="flex w-full items-center justify-between gap-8">
       <div
@@ -27,7 +29,7 @@ export default function HorizontalBarChartItem({
         style={{
           minWidth: (minTitleWidth ?? 11) + 'rem',
         }}>
-        <Emoji>{icons}</Emoji>{' '}
+        <Emoji className="flex w-4">{icons}</Emoji>{' '}
         <p className={`mb-0 underline decoration-dotted underline-offset-4`}>
           {title}
         </p>
@@ -44,7 +46,8 @@ export default function HorizontalBarChartItem({
         <BarChart
           type="horizontal"
           value={`${percentageOfTotalValue}%`}
-          index={index}
+          index={index && index < 5 ? index : 0}
+          category={category}
         />
       </div>
 

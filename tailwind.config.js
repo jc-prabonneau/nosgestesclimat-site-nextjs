@@ -71,10 +71,40 @@ module.exports = {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        planet1: {
+          '0%': { fill: '#8D6C9F' },
+          '100%': { fill: '#9F6C6C' },
+        },
+        planet2: {
+          '0%': { fill: '#72CAAF' },
+          '100%': { fill: '#EA9292' },
+        },
+        planet3: {
+          '0%': { fill: '#75B8E5' },
+          '100%': { fill: '#F78787' },
+        },
+        planet4: {
+          '0%': { fill: '#9FDDFF' },
+          '100%': { fill: '#FFB9B9' },
+        },
+        planet5: {
+          '0%': { fill: '#7BBEEB' },
+          '100%': { fill: '#FD8D8D' },
+        },
+        planet6: {
+          '0%': { fill: '#85CBF8' },
+          '100%': { fill: '#FF9E9E' },
+        },
       },
       animation: {
         valuechange: 'valuechange 3s ease-out infinite',
         iconsRotation: 'iconsRotation 1s ease-in-out',
+        planet1: 'planet1 3s forwards ease-in',
+        planet2: 'planet2 3s forwards ease-in',
+        planet3: 'planet3 3s forwards ease-in',
+        planet4: 'planet4 3s forwards ease-in',
+        planet5: 'planet5 3s forwards ease-in',
+        planet6: 'planet6 3s forwards ease-in',
       },
       backgroundImage: {
         'icons-mobile': "url('/images/misc/mobileIcons.svg')",
