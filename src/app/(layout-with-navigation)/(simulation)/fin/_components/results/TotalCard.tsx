@@ -58,7 +58,7 @@ export default function TotalCard() {
               (prevIsExplanationOpen) => !prevIsExplanationOpen
             )
           }>
-          Qu'est-ce que ça veut dire&nbsp;?
+          Comprendre ce nombre&nbsp;▼
         </Button>
         {isExplanationOpen ? (
           <motion.p
