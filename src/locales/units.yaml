@@ -60,7 +60,7 @@ en:
   # NOTE: following entries should be moved in a separated file?
   oui: yes
   non: no
-  Non applicable: inapplicable
+  Non applicable: not applicable
 
 es:
   €/an: € / año
@@ -73,14 +73,14 @@ es:
   jour: día
   km/an: km/año
   km: km
-  litre: liter
+  litre: litro
   l/semaine: l/semana
   mois: mes
   personne: persona
   semaine: semana
   voyageur: viajero
   l/centkm: l/100km
-  stère: metro cúbico
+  stère: estéreo
   nuit: noche
   tasse: taza
   tasse/semaine: taza/semana
@@ -91,7 +91,7 @@ es:
   # NOTE: following entries should be moved in a separated file?
   oui: sí
   non: no
-  Non applicable: inaplicable
+  Non applicable: no aplicable
 # it:
 #   € / an: € / anno
 #   an: anno
